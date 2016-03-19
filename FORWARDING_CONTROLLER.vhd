@@ -17,12 +17,14 @@ end entity ; -- FORWARDING_CONTROLLER
 architecture arch of FORWARDING_CONTROLLER is
 begin
 
-	forward_1 <= "01" when ((write_reg_m = read_reg_1_x) and write_en_m = '1') else
+	forward_1 <= "00" when read_reg_1_x = "00000" else 
+				"01" when ((write_reg_m = read_reg_1_x) and write_en_m = '1') else
 				"10" when ((write_reg_w = read_reg_1_x) and (write_reg_m /= read_reg_1_x) and write_en_m = '1') else
 				"00";
 
                 
-	forward_2 <= "01" when ((write_reg_m = read_reg_2_x) and write_en_m = '1') else
+	forward_2 <= "00" when read_reg_2_x = "00000" else 
+				"01" when ((write_reg_m = read_reg_2_x) and write_en_m = '1') else
 				"10" when ((write_reg_w = read_reg_2_x) and (write_reg_m /= read_reg_2_x) and write_en_m = '1') else
 				"00";
 
